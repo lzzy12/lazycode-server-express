@@ -12,7 +12,8 @@ const problemValidator = Joi.object({
     difficulty: Joi.string().allow('easy', 'medium', 'hard'),
     defaultCodes: Joi.array().items(defaultCodeValidator),
     solutionLanguage: Joi.string().allow(...supportedLangs),
-    solutionCode: Joi.string().trim().not('')
+    solutionCode: Joi.string().trim().not(''),
+    testCases: Joi.string().trim().required()
 })
 
 export const validateProblemData = (data) => {

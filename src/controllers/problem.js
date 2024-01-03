@@ -29,7 +29,8 @@ export const addProblem = async (req, res) => {
 
 export const getAllProblemsWithoutSolution = async (req, res) => {
     try{
-        const problems = await Problem.find({}).select('-solutionCode').select('-solutionLanguage');
+        const problems = await Problem.find({});
+        // .select('-solutionCode').select('-solutionLanguage');
         return res.status(StatusCodes.ACCEPTED).json(problems);
     } catch(e){
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
@@ -39,7 +40,8 @@ export const getAllProblemsWithoutSolution = async (req, res) => {
 export const getProblemById = async (req, res) => {
     try{
         const id = req.params.id;
-        const problem = await Problem.findById(id).select('-solutionCode').select('-solutionLanguage');
+        const problem = await Problem.findById(id);
+        // .select('-solutionCode').select('-solutionLanguage');
         if (problem === null){
             return res.status(StatusCodes.NOT_FOUND).send();
         }
@@ -51,8 +53,18 @@ export const getProblemById = async (req, res) => {
 
 export const updateProblemById = async (req, res) => {
     try{
-        
+        const id = req.params.id;
+        const data = req.body;
+        const validationErrors = validateProblemData(data);
+        if (validationErrors != null){
+            return res.status(StatusCodes.BAD_REQUEST).json(validationErrors);
+        }
+        const problem = await Problem.findByIdAndUpdate(id, data);
+        if (problem == null){
+            return res.status(StatusCodes.NOT_FOUND).send();
+        }
+        return res.status(StatusCodes.OK).send();
     } catch(e){
-        
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send()
     }
 }

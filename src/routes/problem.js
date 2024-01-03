@@ -1,10 +1,10 @@
 import express from "express";
-import { addProblem, getAllProblemsWithoutSolution, getProblemById } from "../controllers/problem.js";
+import { addProblem, getAllProblemsWithoutSolution, getProblemById, updateProblemById } from "../controllers/problem.js";
 
 const router = express.Router()
 
 router.post('/', addProblem);
 router.get('/', getAllProblemsWithoutSolution)
 router.get('/:id', getProblemById)
-// router.patch('/:id', updateProblemById)
+router.patch('/:id', updateProblemById);
 export default router;

@@ -19,7 +19,10 @@ const userSchema = new Schema({
         type: Boolean,
         default: true,
     },
-    lastActive: Date,
+    lastActive: {
+        type: Date,
+        default: Date.now
+    },
 })
 
 export const User = mongoose.model('User', userSchema);
