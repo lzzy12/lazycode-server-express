@@ -5,7 +5,7 @@ import { supportedLangs } from "../utils/utils";
 const compileValidator = Joi.object({
     code: Joi.string().trim().required(),
     language: Joi.string().allow(...supportedLangs),
-    problemId: Joi.string()
+    problemId: Joi.string(),
 })
 
 export const validateCompileReq = (data) => {
