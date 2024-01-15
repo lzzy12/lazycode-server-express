@@ -18,7 +18,7 @@ app.use('/problems', problemRouter);
 
 mongoose.set("strictQuery", false);
 try{
-  await Promise.resolve([mongoose.connect(ServerConfig.DB_URL), redisClient.connect()]);
+  await Promise.resolve([mongoose.connect(ServerConfig.DB_URL), /*redisClient.connect()*/]);
   console.log('Mongodb Connection successful');
   app.listen(ServerConfig.PORT, () => {
     console.log(`Successfully started the server on PORT : ${ServerConfig.PORT}`);
