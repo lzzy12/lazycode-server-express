@@ -6,4 +6,5 @@ export const SubmissionStatus = {
     tle: 'tle',
     success: 'success',
     queued: 'queued',
+    processing: 'processing'
 }

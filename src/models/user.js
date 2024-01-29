@@ -5,15 +5,27 @@ var validateEmail = function(email) {
     return re.test(email)
 };
 
+var validateUrl = function(url) {
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    return re.test(url);
+}
 const userSchema = new Schema({
     email: {
         type: String,
         required: [true, 'Email must be provided for user creation'],
         validate: [validateEmail, 'Please fill a valid email address'],
     },
-    password: {
+    providerId: {
         type: String,
-        required: [true, 'User must have a password'],
+        required: 'Provider ID must be provider',
+    },
+    photo: {
+        type: String,
+        validate: [validateUrl, 'Must be a valid URL']  
+    },
+    provider: {
+        type: String,
+        required: true,
     },
     userActive: {
         type: Boolean,

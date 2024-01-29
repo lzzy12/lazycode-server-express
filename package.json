@@ -4,20 +4,21 @@
   "description": "Express Starter Template",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "dev": "npx nodemon src/index.js"
+    "start": "nodemon babel-node src/index.js ",
+    "dev": "npx nodemon src/index.js --experimental-specifier-resolution=node"
   },
   "keywords": [
     "template"
   ],
   "type": "module",
-  "author": "Milind Mishra",
+  "module": "ES6",
+  "author": "Shivam Jha",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^4.17.21",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "firebase-admin": "^12.0.0",
     "http-status-codes": "^2.2.0",
     "joi": "^17.11.0",
     "mongoose": "^8.0.3",
@@ -25,5 +26,12 @@
     "nodemon": "^2.0.22",
     "redis": "^4.6.12",
     "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "babel-plugin-add-import-extension": "^1.6.0",
+    "@babel/core": "^7.23.7",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.8",
+    "@types/express": "^4.17.21"
   }
 }
