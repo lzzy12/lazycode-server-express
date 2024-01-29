@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { compile, compileStatus } from "../controllers/compiler";
+import { compile, compileStatus } from "../controllers/compiler.js";
 
 const router = Router()
 

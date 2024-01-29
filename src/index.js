@@ -4,8 +4,9 @@ import mongoose from "mongoose";
 import ServerConfig from './config/ServerConfig.js';
 import problemRouter from './routes/problem.js';
 import cors from 'cors'
+import { initFirebase } from './config/firebase.js';
+import submitRouter from './routes/compile.js';
 import redisClient from './config/redis.js'
-
 const app = express();
 
 app.use(cors())
@@ -13,9 +14,9 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/problems', problemRouter);
-
+app.use('/', submitRouter)
 // app.use("/api", apiRoutes);
-
+initFirebase();
 mongoose.set("strictQuery", false);
 try{
   await Promise.resolve([mongoose.connect(ServerConfig.DB_URL), redisClient.connect()]);
